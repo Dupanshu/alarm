@@ -1,0 +1,67 @@
+<!DOCTYPE html> 
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Dupanshu">
+    <meta name="description" content="Dupanshu's Portfolio">
+    <meta name="keywords" content="HTMl, CSS, JavaScript">
+    <title>Alarm | Dupanshu</title>
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <!-- cdnjs link for font awesome -->
+    <link rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" /> 
+
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/Dupanshu/cdn@master/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dupanshu/cdn@master/reset.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Dupanshu/cdn@master/utils.css">
+    <link rel="stylesheet" href="./assets/style/index.css" class="css">
+    <script src="./assets/script/app.js" defer></script>
+  </head>
+  <body class="child-div-center">
+    <main class="child-div-center">
+      <div class="alarm flex flex-column">
+        <h3>Alarm</h3>
+
+        <!-- clock -->
+        <div class="clock">
+          
+        </div>
+        <button class="add_btn"><i class="fa-solid fa-circle-plus"></i></button>
+      </div>
+
+      <!-- set alarm -->
+      <div class="set_alarm absolute-center flex">
+        <input type="number" name="input_hour" id="input_hour" step="1"
+         placeholder="HH"
+         min="0"
+         max="11"
+         value="HH"
+
+         required>
+
+        <p>:</p>
+
+        <input type="number" name="input_minute" id="input_minute" step="1" 
+         placeholder="MM"
+         min="0"
+         max="59"
+         value="MM"
+         required>
+
+        <input list="time_part" name="input_ampm" id="input_ampm" step="1"
+         value="a.m."
+         required>
+
+        <datalist id="time_part">
+          <option value="a.m.">
+          <option value="p.m.">
+        </datalist>
+      </div>
+    </main>
+  </body>
+</html>
