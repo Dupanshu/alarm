@@ -4,10 +4,17 @@ const clock_div = document.querySelector('.clock');
 const setHour = document.getElementById('input_hour');
 const setMinute = document.getElementById('input_minute');
 const setAmpm = document.getElementById('input_ampm');
+const warningP = document.getElementById('warning_p');
+const setAlarmBtn = document.getElementById('set_alarm_btn');
+const cancelAlarmBtn = document.getElementById('cancel_btn');
+const setAlarm = document.querySelector('.set_alarm');
+const validAmpm = ["a.m.", "p.m."];
 const now = new Date();
 
 const delay = 1000;
 
+
+// function to show clock on the main screen
 function addClock() {
   const now = new Date();
   const hour = now.getHours();
@@ -61,13 +68,13 @@ function addClock() {
 
   function setAlarm() {
     if (setAmpm.value === 'p.m.') {
-      const setNewHour = (Number(setHour.value) + 12);
-      if(setNewHour.toString() === `${hour.toString()}` && setMinute.value === `${minute.toString()}` && second === 0) {
+      const setNewHour = (normalizeHourInput() + 12);
+      if(setNewHour === hour && normalizeMinuteInput() === minute && second === 0) {
         alarmSound.play();
       } else {
         alarmSound.pause();
       }
-    } else if (setHour.value === `${hour.toString()}` && setMinute.value === `${minute.toString()}` && second === 0) {
+    } else if (normalizeHourInput() === hour && normalizeMinuteInput() === minute && second === 0) {
       alarmSound.play();
     } else {
       alarmSound.pause();
@@ -75,9 +82,61 @@ function addClock() {
   }
   
   setAlarm();
+  InvalidTime();
 }
 
 addClock();
 
 setInterval(addClock, delay);
 
+
+// normalize input functions
+function normalizeHourInput() {
+  if (Number(setHour.value) < 10) {
+    if (setHour.value === "0") {
+      const newValue = "0" + setHour.value;
+      return Number(newValue.replace("0", ""));
+    } else {
+      return Number(setHour.value.replace("0", ""));
+    }
+  } else {
+    return Number(setHour.value);
+  }
+}
+
+function normalizeMinuteInput() {
+  if (Number(setMinute.value) < 10) {
+    if (setHour.value === "0") {
+      const newValue = "0" + setMinute.value;
+      return Number(newValue.replace("0", ""));
+    } else {
+      return Number(setMinute.value.replace("0", ""));
+    }
+  } else {
+    return Number(setMinute.value);
+  }
+}
+
+
+//checks fo invalid input
+function InvalidTime() {
+  if (normalizeHourInput() > 11 || normalizeHourInput() < 0 || normalizeMinuteInput() > 59 || normalizeMinuteInput() < 0 || !validAmpm.includes(setAmpm.value) || (setHour.value.length) > 2 || setMinute.value.length > 2 || isNaN(Number(setHour.value)) || isNaN(Number(setMinute.value)) || setHour.value === " " || setMinute.value === " " || setHour.value === "  " || setMinute.value === "  ") {
+    warningP.style.display = 'block';
+  } else {
+    warningP.style.display = 'none';
+  }
+}
+
+window.addEventListener('load', () => {
+  setHour.value = "";
+  setMinute.value = "";
+});
+
+// alarm panel button
+setAlarmBtn.addEventListener('click', () => {
+  setAlarm.style.visibility = 'visible';
+});
+
+cancelAlarmBtn.addEventListener('click', () => {
+  setAlarm.style.visibility = 'hidden';
+});

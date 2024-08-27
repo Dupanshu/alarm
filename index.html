@@ -24,6 +24,7 @@
   </head>
   <body class="child-div-center">
     <main class="child-div-center">
+
       <div class="alarm flex flex-column">
         <h3>Alarm</h3>
 
@@ -31,36 +32,76 @@
         <div class="clock">
           
         </div>
-        <button class="add_btn"><i class="fa-solid fa-circle-plus"></i></button>
+        <button id="set_alarm_btn" class="add_btn"><i class="fa-solid fa-circle-plus"></i></button>
+
+        <!-- alarm list -->
+        <div class="alarm_list flex flex-column">
+          <!-- one element -->
+          <div class="alarm_list_item flex flex-row space-between">
+            <h3>00:15 p.m.</h3>
+            <label class="switch">
+              <input type="checkbox" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="alarm_list_item flex flex-row space-between">
+            <h3>00:15 p.m.</h3>
+            <label class="switch">
+              <input type="checkbox" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="alarm_list_item flex flex-row space-between">
+            <h3>00:15 p.m.</h3>
+            <label class="switch">
+              <input type="checkbox" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
       </div>
 
       <!-- set alarm -->
-      <div class="set_alarm absolute-center flex">
-        <input type="number" name="input_hour" id="input_hour" step="1"
-         placeholder="HH"
-         min="0"
-         max="11"
-         value="HH"
+      <div class="set_alarm absolute-center child-div-center">
+        <div class="flex flex-column alarm_field">
+          <!-- input fields -->
+          <div class="flex input_fields">
+            <input type="text" name="input_hour" id="input_hour" step="1"
+            placeholder="HH"
+            min="0"
+            max="11"
+            value="HH"
+            required>
 
-         required>
+            <p>:</p>
 
-        <p>:</p>
+            <input type="text" name="input_minute" id="input_minute" step="1" 
+            placeholder="MM"
+            min="0"
+            max="59"
+            value="MM"
+            required>
 
-        <input type="number" name="input_minute" id="input_minute" step="1" 
-         placeholder="MM"
-         min="0"
-         max="59"
-         value="MM"
-         required>
+            <input list="time_part" name="input_ampm" id="input_ampm" step="1"
+            value="a.m."
+            required>
 
-        <input list="time_part" name="input_ampm" id="input_ampm" step="1"
-         value="a.m."
-         required>
+            <datalist id="time_part">
+              <option value="a.m.">
+              <option value="p.m.">
+            </datalist>
+          </div>
 
-        <datalist id="time_part">
-          <option value="a.m.">
-          <option value="p.m.">
-        </datalist>
+          
+          <div class="buttons flex">
+            <button id="cancel_btn" class="cancel">Cancel</button>
+            <button type="submit">Save</button>
+          </div>
+
+          <p id="warning_p">
+            <i>Invalid Format. Correct Format is "HH:MM a.m./p.m."</i>
+          </p>
+        </div>
       </div>
     </main>
   </body>
