@@ -103,24 +103,20 @@ body {
                     /*alarm-list*/
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 .alarm_list {
-  /* display: none; */
+  visibility: hidden;
   margin-top: 18px;
-  outline: 2px solid #fff;
+  border: 2px solid rgb(255 255 255 / 50%);
   border-radius: 6px;
   width: 298px;
-  max-height: 130px;
+  max-height: 150px;
   overflow: scroll;
   scrollbar-width: none;
 }
 
 .alarm_list .alarm_list_item {
-  border-bottom: 2px solid #fff;
+  border-bottom: 1px solid rgb(255 255 255 / 50%);
   padding: 16px;
   align-items: center;
-}
-
-.alarm_list .alarm_list_item:last-child {
-  border: none !important;
 }
 
 .alarm_list .alarm_list_item h3 {
@@ -225,6 +221,10 @@ input:checked + .slider::before {
   background: rgb(30, 30, 30);
 }
 
+.set_alarm .alarm_field .buttons button:disabled {
+  cursor: not-allowed;
+}
+
 .set_alarm .alarm_field .buttons {
   gap: 24px;
 }
@@ -273,6 +273,10 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=text] {
   -moz-appearance: textfield;
+}
+
+input::-webkit-calendar-picker-indicator {
+ font-size: 0px;
 }
 
 

@@ -36,28 +36,8 @@
 
         <!-- alarm list -->
         <div class="alarm_list flex flex-column">
-          <!-- one element -->
-          <div class="alarm_list_item flex flex-row space-between">
-            <h3>00:15 p.m.</h3>
-            <label class="switch">
-              <input type="checkbox" checked>
-              <span class="slider"></span>
-            </label>
-          </div>
-          <div class="alarm_list_item flex flex-row space-between">
-            <h3>00:15 p.m.</h3>
-            <label class="switch">
-              <input type="checkbox" checked>
-              <span class="slider"></span>
-            </label>
-          </div>
-          <div class="alarm_list_item flex flex-row space-between">
-            <h3>00:15 p.m.</h3>
-            <label class="switch">
-              <input type="checkbox" checked>
-              <span class="slider"></span>
-            </label>
-          </div>
+          <!-- append element -->
+          
         </div>
       </div>
 
@@ -70,7 +50,7 @@
             placeholder="HH"
             min="0"
             max="11"
-            value="HH"
+            placeholder="HH"
             required>
 
             <p>:</p>
@@ -79,7 +59,7 @@
             placeholder="MM"
             min="0"
             max="59"
-            value="MM"
+            placeholder="MM"
             required>
 
             <input list="time_part" name="input_ampm" id="input_ampm" step="1"
@@ -95,7 +75,7 @@
           
           <div class="buttons flex">
             <button id="cancel_btn" class="cancel">Cancel</button>
-            <button type="submit">Save</button>
+            <button id="save_btn" type="submit">Save</button>
           </div>
 
           <p id="warning_p">
