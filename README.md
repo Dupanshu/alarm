@@ -11,12 +11,12 @@ An interactive alarm clock application built with JavaScript that allows users t
 - `HTML`
 
 ### Usage
-1. Set the Time:
+#### 1. Set the Time:
   - Click the add button.
   - Enter the hour and minute in the input fields.
   - Select "a.m." or "p.m." using the dropdown.
   - Click the "Save" button to make the alarm panel visible.
-2. Manage Alarms
+#### 2. Manage Alarms
   - Use the toggle switch to activate or deactivate individual alarms.
 
 ### Validation
