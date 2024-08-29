@@ -11,6 +11,11 @@
 body {
   background-color: var(--background-color-dark);
   font-family: "IBM Plex Sans", sans-serif;
+  align-items: center;
+}
+
+main {
+  height: 100vh;
 }
 
 
@@ -194,7 +199,7 @@ input:checked + .slider::before {
   height: 180px;
 }
 
-.set_alarm .alarm_field p {
+.set_alarm .alarm_field p i{
   display: none;
   color: tomato;
   font-size: 26px;
@@ -281,13 +286,33 @@ input::-webkit-calendar-picker-indicator {
 
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+                    /*footer*/
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+footer {
+  margin-top: auto;
+}
+
+footer .flex p {
+  color: #fff;
+  background-color: transparent;
+  text-align: center;
+  font-weight: 600;
+  font-family: inherit;
+}
+
+footer .flex p:last-child {
+  border-left: 2px solid #fff;
+  padding-left: 19.2px;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - */
                     /*phone media queries*/
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 @media only screen and (max-width: 450px) {
   .alarm {
     min-height: 450px;
     width: 380px;
-    background: radial-gradient(circle 210px, rgba(207 0 88 / 70%), var(--background-color-dark));
+    background: radial-gradient(circle 230px, rgba(207 0 88 / 70%), var(--background-color-dark));
   }
 
   .set_alarm  .alarm_field .input_fields {

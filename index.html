@@ -22,9 +22,8 @@
     <link rel="stylesheet" href="./assets/style/index.css" class="css">
     <script src="./assets/script/app.js" defer></script>
   </head>
-  <body class="child-div-center">
+  <body class="flex flex-column">
     <main class="child-div-center">
-
       <div class="alarm flex flex-column">
         <h3>Alarm</h3>
 
@@ -78,11 +77,18 @@
             <button id="save_btn" type="submit">Save</button>
           </div>
 
-          <p id="warning_p">
-            <i>Invalid Format. Correct Format is "HH:MM a.m./p.m."</i>
+          <p class="warning_p">
+            
+            <i></i>
           </p>
         </div>
       </div>
     </main>
+    <footer>
+      <div class="flex flex-row gap">
+        <p>&copy; Dupanshu 2024</p>
+        <a href="https://github.com/Dupanshu/alarm/blob/main/README.md" target="_blank"><p>Docs</p></a>
+      </div>
+    </footer>
   </body>
 </html>

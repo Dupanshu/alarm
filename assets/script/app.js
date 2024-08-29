@@ -4,7 +4,7 @@ const clock_div = document.querySelector('.clock');
 const setHour = document.getElementById('input_hour');
 const setMinute = document.getElementById('input_minute');
 const setAmpm = document.getElementById('input_ampm');
-const warningP = document.getElementById('warning_p');
+const warningP = document.querySelector('.warning_p i');
 const setAlarmBtn = document.getElementById('set_alarm_btn');
 const cancelAlarmBtn = document.getElementById('cancel_btn');
 const saveAlarmBtn = document.getElementById('save_btn');
@@ -33,7 +33,7 @@ function addClock() {
     } else {
       return hour.toString();
     }
-  }
+  };
 
   // am or pm for clock
   function ampm() {
@@ -42,7 +42,7 @@ function addClock() {
     } else {
       return "a.m.";
     }
-  }
+  };
 
   // 0 in hours for clock
   function hourDigit() {
@@ -51,7 +51,7 @@ function addClock() {
     } else {
       return hoursRange();
     }
-  }
+  };
 
   // 0 in minutes for clock
   function minuteDigits() {
@@ -60,7 +60,7 @@ function addClock() {
     } else {
       return minute.toString();
     }
-  }
+  };
 
   const clock = document.createElement("h1");
   clock.textContent = `${hourDigit()}:${minuteDigits()} ${ampm()}`;
@@ -84,7 +84,7 @@ function addClock() {
         return Number(setHour.value);
       }
     }
-  }
+  };
 
   function normalizeMinuteInput() {
     if(setMinute.value === "") {
@@ -101,25 +101,29 @@ function addClock() {
         return Number(setMinute.value);
       }
     }
-  }
+  };
 
 
-  //checks fo invalid input
+  //checks for invalid input
   function InvalidTime() {
+    const warning1 = 'Invalid Format. Correct Format is "HH:MM a.m./p.m."';
+
     if (normalizeHourInput() > 11 || normalizeHourInput() < 0 || normalizeMinuteInput() > 59 || normalizeMinuteInput() < 0 || !validAmpm.includes(setAmpm.value) || (setHour.value.length) > 2 || setMinute.value.length > 2 || isNaN(Number(setHour.value)) || isNaN(Number(setMinute.value)) || setHour.value === " " || setMinute.value === " " || setHour.value === "  " || setMinute.value === "  ") {
+      warningP.textContent = warning1;
       warningP.style.display = 'block';
       saveAlarmBtn.disabled = true;
     } else {
       warningP.style.display = 'none';
       saveAlarmBtn.disabled = false;
     }
-  }
+  };
 
 
   setTime = {
     timeHour: normalizeHourInput(),
     timeMinute: normalizeMinuteInput(),
-    ampm: setAmpm.value
+    ampm: setAmpm.value,
+    checked: true
   };
 
   //set alarm
@@ -131,16 +135,18 @@ function addClock() {
       const listMin = setTimeList[i].timeMinute;
       const listAmpm = setTimeList[i].ampm;
 
-      if (listAmpm === 'p.m.') {
-        const setNewHour = (listHour + 12);
-        if(setNewHour === hour && listMin === minute && second === 0) {
+      if(setTimeList[i].checked) {
+        if (listAmpm === 'p.m.') {
+          const setNewHour = (listHour + 12);
+          if(setNewHour === hour && listMin === minute && second === 0) {
+            alarmSound.play();
+          }
+        } else if (listAmpm === 'a.m.' && listHour === hour && listMin === minute && second === 0) {
           alarmSound.play();
         }
-      } else if (listAmpm === 'a.m.' && listHour === hour && listMin === minute && second === 0) {
-        alarmSound.play();
       }
     }
-  }
+  };
 
   alarmSet();
   InvalidTime();
@@ -183,26 +189,40 @@ function displayAlarmList() {
     <div class="alarm_list_item flex flex-row space-between">
       <h3>${rangeListHour}:${rangeListMin} ${listAmpm}</h3>
       <label class="switch">
-        <input type="checkbox" checked>
+        <input type="checkbox" id="checkedAlarm" checked>
         <span class="slider"></span>
       </label>
     </div>
     `;
     alarmList.insertBefore(emptyDiv, alarmList.firstChild);
+
+    //toggle alarm on off button
+    const checkBtn = document.getElementById('checkedAlarm');
+
+    checkBtn.addEventListener('click', () => {
+      setTimeList[i].checked = !setTimeList[i].checked;
+    });
   }
 }
 
 //save alarm to alarm list
-saveAlarmBtn.addEventListener('click', () => {
-  if (isNaN(setTime.timeHour) || isNaN(setTime.timeMinute)) {
-    alarmList.style.visibility = 'hidden';
-  } else {
-    alarmList.style.visibility = 'visible';
-    setTimeList.push(setTime);
-    displayAlarmList();
-    setAlarm.style.visibility = 'hidden';
-    setHour.value = "";
-    setMinute.value = "";
-  }
-});
+function saveBtnValidation() {
+  const warning2 = "Please enter something.";
+
+  saveAlarmBtn.addEventListener('click', () => {
+    if (isNaN(setTime.timeHour) || isNaN(setTime.timeMinute)) {
+      warningP.textContent = warning2;
+      warningP.style.display = 'block';
+    } else {
+      warningP.style.display = 'none';
+      alarmList.style.visibility = 'visible';
+      setTimeList.push(setTime);
+      displayAlarmList();
+      setAlarm.style.visibility = 'hidden';
+      setHour.value = "";
+      setMinute.value = "";
+    }
+  });
+};
+saveBtnValidation();
 
