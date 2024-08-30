@@ -18,6 +18,42 @@ const delay = 1000;
 
 let setTime = {};
 
+
+// normalize input functions
+function normalizeHourInput() {
+  if (setHour.value === "") {
+    return NaN;
+  } else {
+    if (Number(setHour.value) < 10) {
+      if (setHour.value === "0") {
+        const newValue = "0" + setHour.value;
+        return Number(newValue.replace("0", ""));
+      } else {
+        return Number(setHour.value.replace("0", ""));
+      }
+    } else {
+      return Number(setHour.value);
+    }
+  }
+};
+
+function normalizeMinuteInput() {
+  if(setMinute.value === "") {
+    return NaN;
+  } else {
+    if (Number(setMinute.value) < 10) {
+      if (setMinute.value === "0") {
+        const newValue = "0" + setMinute.value;
+        return Number(newValue.replace("0", ""));
+      } else {
+        return Number(setMinute.value.replace("0", ""));
+      }
+    } else {
+      return Number(setMinute.value);
+    }
+  }
+};
+
 // function to show clock on the main screen
 function addClock() {
   const now = new Date();
@@ -66,42 +102,6 @@ function addClock() {
   clock.textContent = `${hourDigit()}:${minuteDigits()} ${ampm()}`;
 
   clock_div.replaceChild(clock, clock_div.firstChild);
-
-  
-  // normalize input functions
-  function normalizeHourInput() {
-    if (setHour.value === "") {
-      return NaN;
-    } else {
-      if (Number(setHour.value) < 10) {
-        if (setHour.value === "0") {
-          const newValue = "0" + setHour.value;
-          return Number(newValue.replace("0", ""));
-        } else {
-          return Number(setHour.value.replace("0", ""));
-        }
-      } else {
-        return Number(setHour.value);
-      }
-    }
-  };
-
-  function normalizeMinuteInput() {
-    if(setMinute.value === "") {
-      return NaN;
-    } else {
-      if (Number(setMinute.value) < 10) {
-        if (setMinute.value === "0") {
-          const newValue = "0" + setMinute.value;
-          return Number(newValue.replace("0", ""));
-        } else {
-          return Number(setMinute.value.replace("0", ""));
-        }
-      } else {
-        return Number(setMinute.value);
-      }
-    }
-  };
 
 
   //checks for invalid input
