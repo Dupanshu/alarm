@@ -159,17 +159,45 @@ setInterval(addClock, delay);
 window.addEventListener('load', () => {
   setHour.value = "";
   setMinute.value = "";
+  setAmpm.value = "a.m.";
 });
 
 // alarm panel button
 setAlarmBtn.addEventListener('click', () => {
   setAlarm.style.visibility = 'visible';
+ setTimeout(() => {
+  setHour.focus();
+ }, 500);
 });
 
 cancelAlarmBtn.addEventListener('click', () => {
   setAlarm.style.visibility = 'hidden';
   setHour.value = "";
   setMinute.value = "";
+  setAmpm.value = "a.m.";
+});
+
+
+// input field easy accessability
+setHour.addEventListener('keydown', (event)=>{
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    setMinute.focus();
+  }
+});
+
+setMinute.addEventListener('keydown', (event)=> {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    setAmpm.focus();
+  }
+});
+
+setAmpm.addEventListener('keydown', (event)=> {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    saveAlarmBtn.click();
+  }
 });
 
 
